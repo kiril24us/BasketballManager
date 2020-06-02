@@ -1,0 +1,22 @@
+﻿@using BasketballManager.Common
+@model BasketballManager.Web.ViewModels.MyTeam.RegisterMyTeamViewModel
+@{
+    this.ViewData["Title"] = "Register Team";
+}
+<h2 class="text-center">Create your team by filling all the information!</h2>
+
+<div class="col-md-4" >
+    <form asp-controller="MyTeam" asp-action="Register" method="post">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+
+        <label asp-for="Owner"></label>
+        <input asp-for="Owner" class="form-control" />
+
+        <label asp-for="Coach"></label>
+        <input asp-for="Coach" class="form-control" />
+
+        <hr/>
+        <input type="submit" class="btn btn-primary" />
+    </form>
+</div>

@@ -25,9 +25,7 @@
 
         public virtual MyTeam MyTeam { get; set; }
 
-        public int PositionId { get; set; }
-
-        public virtual Position Position { get; set; }
+        public PositionType PositionType { get; set; }
 
         public ICollection<GameStatistic> PlayerStatistics { get; set; }
     }

@@ -1,7 +1,11 @@
-﻿namespace BasketballManager.Services.Data
+﻿using System.Threading.Tasks;
+
+namespace BasketballManager.Services.Data
 {
     public interface IMyTeamService
     {
-         void CreateMyTeam(string name, string coach, string owner);
+         Task CreateMyTeam(string name, string coach, string owner);
+
+         //T Get<T>(string name);
     }
 }

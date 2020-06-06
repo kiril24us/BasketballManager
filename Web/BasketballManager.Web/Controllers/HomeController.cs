@@ -4,7 +4,7 @@
 
     using BasketballManager.Data;
     using BasketballManager.Web.ViewModels;
-
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController

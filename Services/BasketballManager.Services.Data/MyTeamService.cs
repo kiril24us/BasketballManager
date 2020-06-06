@@ -1,5 +1,7 @@
 ﻿namespace BasketballManager.Services.Data
 {
+    using System.Threading.Tasks;
+
     using BasketballManager.Data.Common.Repositories;
     using BasketballManager.Data.Models;
 
@@ -12,7 +14,7 @@
             this.myTeamRepository = myTeamRepository;
         }
 
-        public void CreateMyTeam(string name, string coach, string owner)
+        public async Task CreateMyTeam(string name, string coach, string owner)
         {
             var team = new MyTeam
             {
@@ -21,7 +23,7 @@
                 Coach = coach,
             };
 
-            this.myTeamRepository.AddAsync(team);
+            await this.myTeamRepository.AddAsync(team);
         }
     }
 }

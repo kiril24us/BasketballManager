@@ -36,8 +36,6 @@
 
         public DbSet<GameStatistic> GameStatistics { get; set; }
 
-        public DbSet<Position> Positions { get; set; }
-
         public DbSet<Statistic> Statistics { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

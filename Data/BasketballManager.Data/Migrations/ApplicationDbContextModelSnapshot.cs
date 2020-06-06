@@ -272,31 +272,14 @@ namespace BasketballManager.Data.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<int>("PositionId")
+                    b.Property<int>("PositionType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MyTeamId");
 
-                    b.HasIndex("PositionId");
-
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("BasketballManager.Data.Models.Position", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("BasketballManager.Data.Models.Setting", b =>
@@ -528,12 +511,6 @@ namespace BasketballManager.Data.Migrations
                     b.HasOne("BasketballManager.Data.Models.MyTeam", "MyTeam")
                         .WithMany("Players")
                         .HasForeignKey("MyTeamId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BasketballManager.Data.Models.Position", "Position")
-                        .WithMany()
-                        .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

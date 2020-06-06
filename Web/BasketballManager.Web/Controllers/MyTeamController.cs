@@ -60,10 +60,10 @@
         [Authorize]
         public IActionResult Details()
         {
-
+            var userId = this.userManager.GetUserId(HttpContext.User);
             var viewModel = new DetailsMyTeamsViewModel();
             //var teams = this.db.MyTeams.To<DetailsMyTeamsViewModel>().ToList();
-            var teams = this.db.MyTeams.Select(a => new MyTeamViewModel
+            var teams = this.db.MyTeams.Where(x => x.UserId == userId).Select(a => new MyTeamViewModel
             {
                 Name = a.Name,
             }).ToList();

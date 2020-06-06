@@ -29,25 +29,27 @@
             this.signInManager = signInManager;
         }
 
+        [Authorize]
         public IActionResult Register()
         {
             return this.View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Register(RegisterMyTeamViewModel input)
         {
             //var team = this.db.MyTeams.To<MyTeam>(input).FirstOrDefault();
 
-            //var user = await this.userManager.GetUserAsync(this.HttpContext.User);
-            //var userId = user.Id;
+            var userId = this.userManager.GetUserId(HttpContext.User);
+            //var result = this.signInManager.SignInAsync()
 
             var team = new MyTeam
             {
                 Name = input.Name,
                 Coach = input.Coach,
                 Owner = input.Owner,
-                //UserId = userId,
+                UserId = userId,
             };
 
             this.db.MyTeams.Add(team);
@@ -55,8 +57,10 @@
             return this.Redirect("/");
         }
 
+        [Authorize]
         public IActionResult Details()
         {
+
             var viewModel = new DetailsMyTeamsViewModel();
             //var teams = this.db.MyTeams.To<DetailsMyTeamsViewModel>().ToList();
             var teams = this.db.MyTeams.Select(a => new MyTeamViewModel

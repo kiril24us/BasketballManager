@@ -76,6 +76,14 @@
                     .HasForeignKey(g => g.StatisticId);
             });
 
+            builder.Entity<MyTeam>(entity =>
+            {
+                entity
+                    .HasOne(d => d.User)
+                    .WithMany(p => p.MyTeams)
+                    .HasForeignKey(d => d.UserId);
+            });
+
             base.OnModelCreating(builder);
 
             this.ConfigureUserIdentityRelations(builder);

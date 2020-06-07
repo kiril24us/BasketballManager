@@ -15,18 +15,18 @@
 
     public class MyTeamController : Controller
     {
-        private readonly ApplicationDbContext db;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IMyTeamService myTeamService;
 
         public MyTeamController(
-            ApplicationDbContext db,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IMyTeamService myTeamService)
         {
-            this.db = db;
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.myTeamService = myTeamService;
         }
 
         [Authorize]
@@ -39,21 +39,8 @@
         [Authorize]
         public IActionResult Register(RegisterMyTeamViewModel input)
         {
-            //var team = this.db.MyTeams.To<MyTeam>(input).FirstOrDefault();
-
-            var userId = this.userManager.GetUserId(HttpContext.User);
-            //var result = this.signInManager.SignInAsync()
-
-            var team = new MyTeam
-            {
-                Name = input.Name,
-                Coach = input.Coach,
-                Owner = input.Owner,
-                UserId = userId,
-            };
-
-            this.db.MyTeams.Add(team);
-            this.db.SaveChanges();
+            var userId = this.userManager.GetUserId(this.HttpContext.User);
+            this.myTeamService.CreateMyTeam(input.Name, input.Coach, input.Owner, userId);          
             return this.Redirect("/");
         }
 
@@ -62,11 +49,7 @@
         {
             var userId = this.userManager.GetUserId(HttpContext.User);
             var viewModel = new DetailsMyTeamsViewModel();
-            //var teams = this.db.MyTeams.To<DetailsMyTeamsViewModel>().ToList();
-            var teams = this.db.MyTeams.Where(x => x.UserId == userId).Select(a => new MyTeamViewModel
-            {
-                Name = a.Name,
-            }).ToList();
+            var teams = this.myTeamService.GetAllTeamsById<MyTeamViewModel>(userId);
             viewModel.Teams = teams;
             return this.View(viewModel);
         }

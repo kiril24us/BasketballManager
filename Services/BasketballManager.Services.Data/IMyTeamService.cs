@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BasketballManager.Services.Data
 {
     public interface IMyTeamService
     {
-         Task CreateMyTeam(string name, string coach, string owner);
+         Task CreateMyTeam(string name, string coach, string owner, string userId);
 
-         //T Get<T>(string name);
+         IEnumerable<T> GetAllTeamsById<T>(string userId);
     }
 }

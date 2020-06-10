@@ -1,15 +1,14 @@
 ﻿namespace BasketballManager.Data.Models
 {
+    using BasketballManager.Data.Common.Models;
     using System.Collections.Generic;
 
-    public class Player
+    public class Player : BaseDeletableModel<int>
     {
         public Player()
         {
             this.PlayerStatistics = new HashSet<GameStatistic>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

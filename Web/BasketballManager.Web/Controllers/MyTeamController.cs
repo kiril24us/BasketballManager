@@ -37,17 +37,22 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Register(RegisterMyTeamViewModel input)
+        public async Task<IActionResult> Register(RegisterMyTeamViewModel input)
         {
-            var userId = this.userManager.GetUserId(this.HttpContext.User);
-            this.myTeamService.CreateMyTeam(input.Name, input.Coach, input.Owner, userId);          
-            return this.Redirect("/");
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            var userId = this.userManager.GetUserId(this.User);
+            await this.myTeamService.CreateMyTeam(input.Name, input.Coach, input.Owner, userId);
+            return this.RedirectToAction("Details");
         }
 
         [Authorize]
         public IActionResult Details()
         {
-            var userId = this.userManager.GetUserId(HttpContext.User);
+            var userId = this.userManager.GetUserId(this.User);
             var viewModel = new DetailsMyTeamsViewModel();
             var teams = this.myTeamService.GetAllTeamsById<MyTeamViewModel>(userId);
             viewModel.Teams = teams;

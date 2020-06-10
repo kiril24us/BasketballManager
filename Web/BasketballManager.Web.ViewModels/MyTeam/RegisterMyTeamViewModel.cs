@@ -8,7 +8,7 @@
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Mapping;
 
-    public class RegisterMyTeamViewModel //: IMapFrom<MyTeam>
+    public class RegisterMyTeamViewModel : IMapFrom<MyTeam>
     {
         [Required]
         [MinLength(3)]

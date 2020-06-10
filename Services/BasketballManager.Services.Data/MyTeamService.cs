@@ -5,11 +5,10 @@
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
-
+    using AutoMapper;
     using BasketballManager.Data.Common.Repositories;
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Mapping;
-    using BasketballManager.Web.ViewModels.MyTeam;
     using Microsoft.AspNetCore.Identity;
 
     public class MyTeamService : IMyTeamService
@@ -22,7 +21,7 @@
             this.myTeamRepository = myTeamRepository;
         }
 
-        public async Task CreateMyTeam(string name, string coach, string owner, string userId)
+        public async Task<int> CreateMyTeam(string name, string coach, string owner, string userId)
         {
             var team = new MyTeam
             {
@@ -34,6 +33,7 @@
 
             await this.myTeamRepository.AddAsync(team);
             await this.myTeamRepository.SaveChangesAsync();
+            return team.Id;
         }
 
         public IEnumerable<T> GetAllTeamsById<T>(string userId)

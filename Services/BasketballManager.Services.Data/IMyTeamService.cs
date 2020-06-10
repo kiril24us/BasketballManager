@@ -5,7 +5,7 @@ namespace BasketballManager.Services.Data
 {
     public interface IMyTeamService
     {
-         Task CreateMyTeam(string name, string coach, string owner, string userId);
+         Task<int> CreateMyTeam(string name, string coach, string owner, string userId);
 
          IEnumerable<T> GetAllTeamsById<T>(string userId);
     }

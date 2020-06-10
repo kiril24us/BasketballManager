@@ -1,0 +1,35 @@
+﻿@model BasketballManager.Web.ViewModels.MyTeam.DetailsMyTeamsViewModel
+@{
+    this.ViewData["Title"] = "My Teams Details ";
+}
+<h3>These are all registered teams</h3>
+
+<table class="table mx-auto">
+    <thead>
+        <tr class="row">
+            <th class="col-md-1">#</th>
+            <th class="col-md-2">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var counter = 1;
+            foreach (var item in Model.Teams)
+            {
+                <tr class="row">
+                    <th class="col-md-1">@counter</th>
+                    <td class="col-md-2">@item.Name</td>
+                    <td >
+                        <a href="@item.Url">
+                        <input type="submit" value="Add Players to the team" class="btn btn-light"/>
+                            </a>
+                    </td>
+                </tr>
+                counter++;
+            }
+        }
+    </tbody>
+</table>
+
+
+

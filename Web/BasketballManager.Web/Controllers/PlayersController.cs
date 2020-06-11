@@ -6,7 +6,9 @@
     using System.Threading.Tasks;
 
     using BasketballManager.Data;
+    using BasketballManager.Data.Common.Repositories;
     using BasketballManager.Data.Models;
+    using BasketballManager.Services.Data;
     using BasketballManager.Services.Mapping;
     using BasketballManager.Web.ViewModels.Players;
     using Microsoft.AspNetCore.Authorization;
@@ -14,11 +16,11 @@
 
     public class PlayersController : Controller
     {
-        private readonly ApplicationDbContext db;
+        private readonly IPlayersService playersService;
 
-        public PlayersController(ApplicationDbContext db)
+        public PlayersController(IPlayersService playersService)
         {
-            this.db = db;
+            this.playersService = playersService;
         }
 
         [Authorize]
@@ -29,24 +31,20 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Add(AddPlayerViewModel input)
+        public async Task<IActionResult> Add(AddPlayerViewModel input, int id)
         {
-            var positionAsEnum = Enum.Parse<PositionType>(input.PositionType);
-
-            var player = new Player
+            if (!this.ModelState.IsValid)
             {
-                Name = input.Name,
-                Age = input.Age,
-                Height = input.Height,
-                Kilos = input.Kilos,
-                Number = input.Number,
-                PositionType = positionAsEnum,
-            };
+                return this.View(input);
+            }
 
-            this.db.Players.Add(player);
-            this.db.SaveChanges();
-            return this.Redirect("/");
+            await this.playersService.Register(input.Name, input.Age, input.Height, input.Kilos, input.Number, input.PositionType, id);
+            return this.Redirect("/MyTeam/Details");
         }
 
+        public IActionResult All()
+        {
+
+        }
     }
 }

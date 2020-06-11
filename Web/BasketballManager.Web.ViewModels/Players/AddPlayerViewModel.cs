@@ -9,7 +9,7 @@
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Mapping;
 
-    public class AddPlayerViewModel : IMapFrom<Player>
+    public class AddPlayerViewModel
     {
         [Required]
         public string Name { get; set; }

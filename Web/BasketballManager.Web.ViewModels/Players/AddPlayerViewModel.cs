@@ -32,6 +32,5 @@
 
         [Required]
         public string PositionType { get; set; }
-
     }
 }

@@ -1,1 +1,28 @@
-﻿
+﻿@model BasketballManager.Web.ViewModels.Players.DetailsAllPlayers
+@{
+    this.ViewData["Title"] = "All Players ";
+}
+
+<table class="table mx-auto">
+    <thead>
+        <tr class="row">
+            <th class="col-md-1">#</th>
+            <th class="col-md-2">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var counter = 1;
+            foreach (var player in Model.Players)
+            {
+                <tr class="row">
+                    <th class="col-md-1">@counter</th>                                        
+                    <td><a href="/Players/Info/@player.Id">@player.Name</a></td>
+                </tr>
+                counter++;
+            }
+        }
+    </tbody>
+</table>
+
+

@@ -2,14 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
-    using System.Net.Http;
     using System.Threading.Tasks;
-    using AutoMapper;
+
     using BasketballManager.Data.Common.Repositories;
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Mapping;
-    using Microsoft.AspNetCore.Identity;
 
     public class MyTeamService : IMyTeamService
     {
@@ -38,7 +35,8 @@
 
         public IEnumerable<T> GetAllTeamsById<T>(string userId)
         {
-            var teams = this.myTeamRepository.All().Where(x => x.UserId == userId);
+            var teams = this.myTeamRepository.All().Where(x => x.UserId == userId)
+                                                   .OrderBy(x => x.Name);
 
             return teams.To<T>().ToList();
         }

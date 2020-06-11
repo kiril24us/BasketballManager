@@ -42,9 +42,20 @@
             return this.Redirect("/MyTeam/Details");
         }
 
-        public IActionResult All()
+        public IActionResult All(int id)
         {
+            var viewModel = new DetailsAllPlayers();
+            var players = this.playersService.AllPlayersByTeamId<DetailsPlayer>(id);
+            viewModel.Players = players;
+            return this.View(viewModel);
+        }
 
+        public IActionResult Info(int id)
+        {
+            var viewModel = new DetailsPlayer();
+            var player = this.playersService.PlayersInfo<DetailsPlayer>(id);
+            viewModel = player;
+            return this.View(viewModel);
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿namespace BasketballManager.Data.Models
 {
-    using BasketballManager.Data.Common.Models;
     using System.Collections.Generic;
+
+    using BasketballManager.Data.Common.Models;
 
     public class Player : BaseDeletableModel<int>
     {

@@ -15,7 +15,7 @@
 
         public virtual Player Player { get; set; }
 
-        public int OffenciveRebounds { get; set; }
+        public int OffensiveRebounds { get; set; }
 
         public int DefensiveRebounds { get; set; }
 

@@ -15,7 +15,7 @@
                 return;
             }
 
-            var myteam = new MyTeam
+            var myteam = new Team
                 {
                     Name = "Los Angeles Lakers",
                     Coach = "Frank Vogel",

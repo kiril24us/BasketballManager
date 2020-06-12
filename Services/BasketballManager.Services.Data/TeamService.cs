@@ -8,19 +8,19 @@
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Mapping;
 
-    public class MyTeamService : IMyTeamService
+    public class TeamService : ITeamService
     {
-        private readonly IDeletableEntityRepository<MyTeam> myTeamRepository;
+        private readonly IDeletableEntityRepository<Team> myTeamRepository;
 
-        public MyTeamService(
-            IDeletableEntityRepository<MyTeam> myTeamRepository)
+        public TeamService(
+            IDeletableEntityRepository<Team> myTeamRepository)
         {
             this.myTeamRepository = myTeamRepository;
         }
 
         public async Task<int> CreateMyTeam(string name, string coach, string owner, string userId)
         {
-            var team = new MyTeam
+            var team = new Team
             {
                 Name = name,
                 Coach = coach,

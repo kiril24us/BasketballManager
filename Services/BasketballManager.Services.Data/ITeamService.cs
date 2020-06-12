@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IMyTeamService
+    public interface ITeamService
     {
          Task<int> CreateMyTeam(string name, string coach, string owner, string userId);
 

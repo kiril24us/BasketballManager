@@ -8,7 +8,7 @@
 
         public int MyTeamId { get; set; }
 
-        public virtual MyTeam MyTeam { get; set; }
+        public virtual Team MyTeam { get; set; }
         
     }
 }

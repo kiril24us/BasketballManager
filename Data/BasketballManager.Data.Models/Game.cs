@@ -14,7 +14,7 @@
 
         public int MyTeamId { get; set; }
 
-        public MyTeam MyTeam { get; set; }
+        public Team MyTeam { get; set; }
 
         public int OpponentTeamId { get; set; }
 

@@ -1,0 +1,15 @@
+﻿@model BasketballManager.Web.ViewModels.Players.DetailsPlayer
+
+@{
+    this.ViewData["Title"] = "Information about player ";
+}
+
+<h3>@Model.Name</h3>
+
+<ul style="list-style-type:circle">
+    <li>Age: @Model.Age</li>
+    <li>Height: @Model.Height</li>
+    <li>Kilograms: @Model.Kilos</li>
+    <li>Number: @Model.Number</li>
+    <li>Position: @Model.PositionType</li>
+</ul>

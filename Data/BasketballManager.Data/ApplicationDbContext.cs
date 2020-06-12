@@ -32,7 +32,7 @@
 
         public DbSet<Player> Players { get; set; }
 
-        public DbSet<MyTeam> MyTeams { get; set; }
+        public DbSet<Team> MyTeams { get; set; }
 
         public DbSet<GameStatistic> GameStatistics { get; set; }
 
@@ -76,7 +76,7 @@
                     .HasForeignKey(g => g.StatisticId);
             });
 
-            builder.Entity<MyTeam>(entity =>
+            builder.Entity<Team>(entity =>
             {
                 entity
                     .HasOne(d => d.User)

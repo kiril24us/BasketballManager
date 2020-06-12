@@ -14,20 +14,20 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class MyTeamController : Controller
+    public class TeamController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly IMyTeamService myTeamService;
+        private readonly ITeamService teamService;
 
-        public MyTeamController(
+        public TeamController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IMyTeamService myTeamService)
+            ITeamService teamService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.myTeamService = myTeamService;
+            this.teamService = teamService;
         }
 
         [Authorize]
@@ -46,7 +46,7 @@
             }
 
             var userId = this.userManager.GetUserId(this.User);
-            await this.myTeamService.CreateMyTeam(input.Name, input.Coach, input.Owner, userId);
+            await this.teamService.CreateMyTeam(input.Name, input.Coach, input.Owner, userId);
             return this.RedirectToAction("Details");
         }
 
@@ -55,7 +55,7 @@
         {
             var userId = this.userManager.GetUserId(this.User);
             var viewModel = new DetailsMyTeamsViewModel();
-            var teams = this.myTeamService.GetAllTeamsById<MyTeamViewModel>(userId);
+            var teams = this.teamService.GetAllTeamsById<MyTeamViewModel>(userId);
             viewModel.Teams = teams;
             return this.View(viewModel);
         }

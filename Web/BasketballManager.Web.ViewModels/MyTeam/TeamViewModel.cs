@@ -3,7 +3,7 @@
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Mapping;
 
-    public class MyTeamViewModel : IMapFrom<Team>
+    public class TeamViewModel : IMapFrom<Team>
     {
         public string Name { get; set; }
 

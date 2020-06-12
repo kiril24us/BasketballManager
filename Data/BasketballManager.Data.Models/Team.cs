@@ -4,9 +4,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using BasketballManager.Data.Common.Models;
 
-    public class MyTeam : BaseDeletableModel<int>
+    public class Team : BaseDeletableModel<int>
     {
-        public MyTeam()
+        public Team()
         {
             this.Games = new HashSet<Game>();
             this.Players = new HashSet<Player>();

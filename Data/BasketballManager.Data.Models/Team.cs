@@ -1,6 +1,7 @@
 ﻿namespace BasketballManager.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     using BasketballManager.Data.Common.Models;
 

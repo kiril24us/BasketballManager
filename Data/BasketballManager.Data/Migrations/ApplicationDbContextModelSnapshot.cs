@@ -164,6 +164,9 @@ namespace BasketballManager.Data.Migrations
                     b.Property<int>("MyPoints")
                         .HasColumnType("int");
 
+                    b.Property<int>("OpponentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OpponentPoints")
                         .HasColumnType("int");
 
@@ -267,20 +270,20 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Assists")
-                        .HasColumnType("float");
+                    b.Property<int>("Assists")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("DefensiveRebounds")
-                        .HasColumnType("float");
+                    b.Property<int>("DefensiveRebounds")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Fouls")
-                        .HasColumnType("float");
+                    b.Property<int>("Fouls")
+                        .HasColumnType("int");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
@@ -291,17 +294,17 @@ namespace BasketballManager.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("OffensiveRebounds")
-                        .HasColumnType("float");
+                    b.Property<int>("OffensiveRebounds")
+                        .HasColumnType("int");
 
-                    b.Property<double>("PlayedMinutes")
-                        .HasColumnType("float");
+                    b.Property<int>("PlayedMinutes")
+                        .HasColumnType("int");
 
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.Property<double>("ThreePointsAttempt")
-                        .HasColumnType("float");
+                    b.Property<int>("ThreePointsAttempt")
+                        .HasColumnType("int");
 
                     b.Property<int>("ThreePointsMade")
                         .HasColumnType("int");

@@ -57,5 +57,11 @@
             viewModel = player;
             return this.View(viewModel);
         }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            await this.playersService.Remove(id);
+            return this.Redirect("/Team/Details");
+        }
     }
 }

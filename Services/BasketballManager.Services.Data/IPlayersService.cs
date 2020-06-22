@@ -12,5 +12,7 @@
         IEnumerable<T> AllPlayersByTeamId<T>(int teamId);
 
         T PlayersInfo<T>(int playerId);
+
+        Task Remove(int playerId);
     }
 }

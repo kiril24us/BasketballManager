@@ -16,8 +16,15 @@
             foreach (var player in Model.Players)
             {
                 <tr class="row">
-                    <th class="col-md-1">@counter</th>                                        
+                    <th class="col-md-1">@counter</th>
                     <td><a href="/Players/Info/@player.Id">@player.Name</a></td>
+                    <td>
+                        <div>
+                            <a href="/Players/Remove/@player.Id">
+                                <input type="submit" value="Remove player" class="btn btn-outline-danger" />
+                            </a>
+                        </div>
+                    </td>
                 </tr>
                 counter++;
             }

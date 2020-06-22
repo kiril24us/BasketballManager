@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading.Tasks;
 
@@ -33,7 +34,7 @@
             return player.To<T>().FirstOrDefault();
         }
 
-        public async Task Register(string name, int age, double height, double kilos, int number, string positionType, int TeamId)
+        public async Task Register(string name, int age, double height, double kilos, int number, string positionType, int teamId)
         {
             var positionAsEnum = Enum.Parse<PositionType>(positionType);
 
@@ -45,10 +46,17 @@
                 Kilos = kilos,
                 Number = number,
                 PositionType = positionAsEnum,
-                TeamId = TeamId,
+                TeamId = teamId,
             };
 
             await this.playersRepository.AddAsync(player);
+            await this.playersRepository.SaveChangesAsync();
+        }
+
+        public async Task Remove(int playerId)
+        {
+            var player = this.playersRepository.All().Where(x => x.Id == playerId).FirstOrDefault();
+            this.playersRepository.Delete(player);
             await this.playersRepository.SaveChangesAsync();
         }
     }

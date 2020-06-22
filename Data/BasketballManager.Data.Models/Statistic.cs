@@ -6,17 +6,17 @@
 
     public class Statistic : BaseDeletableModel<int>
     {
-        public double OffensiveRebounds { get; set; }
+        public int OffensiveRebounds { get; set; }
 
-        public double DefensiveRebounds { get; set; }
+        public int DefensiveRebounds { get; set; }
 
-        public double Assists { get; set; }
+        public int Assists { get; set; }
 
-        public double Fouls { get; set; }
+        public int Fouls { get; set; }
 
-        public double PlayedMinutes { get; set; }
+        public int PlayedMinutes { get; set; }
 
-        public double ThreePointsAttempt { get; set; }
+        public int ThreePointsAttempt { get; set; }
 
         public int ThreePointsMade { get; set; }
 

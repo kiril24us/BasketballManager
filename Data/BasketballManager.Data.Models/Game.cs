@@ -15,6 +15,8 @@
 
         public int TeamId { get; set; }
 
+        public int OpponentId { get; set; }
+
         public virtual Team Team { get; set; }
     }
 }

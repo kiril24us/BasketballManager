@@ -36,7 +36,7 @@
         public IEnumerable<T> GetAllTeamsById<T>(string userId)
         {
             var teams = this.myTeamRepository.All().Where(x => x.UserId == userId)
-                                                   .OrderBy(x => x.Name);
+                                                   .OrderBy(x => x.CreatedOn);
 
             return teams.To<T>().ToList();
         }

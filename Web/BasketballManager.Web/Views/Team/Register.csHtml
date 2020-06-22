@@ -5,7 +5,7 @@
 <h2 class="text-center">Create your team by filling all the information!</h2>
 
 <div class="col-md-4">
-    <form asp-controller="MyTeam" asp-action="Register" method="post">
+    <form asp-controller="Team" asp-action="Register" method="post">
         <div>
             <label asp-for="Name"></label>
             <input asp-for="Name" class="form-control" />
@@ -23,7 +23,7 @@
             <input asp-for="Coach" class="form-control" />
             <span asp-validation-for="Coach" class="text-danger"></span>
         </div>
-
+     <h1/>
      <input type="submit" value="Submit" class="btn btn-primary" />
     </form>
 </div>

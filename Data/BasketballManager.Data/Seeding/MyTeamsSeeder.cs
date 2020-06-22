@@ -10,7 +10,7 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.MyTeams.Any())
+            if (dbContext.Teams.Any())
             {
                 return;
             }
@@ -22,7 +22,7 @@
                     Owner = "Jessie",
                 };
 
-            await dbContext.MyTeams.AddAsync(myteam);
+            await dbContext.Teams.AddAsync(myteam);
         }
     }
 }

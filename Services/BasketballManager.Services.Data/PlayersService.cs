@@ -20,9 +20,9 @@
             this.playersRepository = playersRepository;
         }
 
-        public IEnumerable<T> AllPlayersByTeamId<T>(int myteamId)
+        public IEnumerable<T> AllPlayersByTeamId<T>(int teamId)
         {
-            var players = this.playersRepository.All().Where(x => x.MyTeamId == myteamId)
+            var players = this.playersRepository.All().Where(x => x.TeamId == teamId)
                                                       .OrderBy(x => x.Name);
             return players.To<T>().ToList();
         }
@@ -33,7 +33,7 @@
             return player.To<T>().FirstOrDefault();
         }
 
-        public async Task Register(string name, int age, double height, double kilos, int number, string positionType, int myTeamId)
+        public async Task Register(string name, int age, double height, double kilos, int number, string positionType, int TeamId)
         {
             var positionAsEnum = Enum.Parse<PositionType>(positionType);
 
@@ -45,7 +45,7 @@
                 Kilos = kilos,
                 Number = number,
                 PositionType = positionAsEnum,
-                MyTeamId = myTeamId,
+                TeamId = TeamId,
             };
 
             await this.playersRepository.AddAsync(player);

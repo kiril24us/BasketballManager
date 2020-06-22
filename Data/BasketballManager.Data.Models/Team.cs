@@ -10,7 +10,6 @@
         {
             this.Games = new HashSet<Game>();
             this.Players = new HashSet<Player>();
-            this.OpponentTeams = new HashSet<OpponentTeam>();
         }
 
         public string Name { get; set; }
@@ -26,7 +25,5 @@
         public ICollection<Player> Players { get; set; }
 
         public ICollection<Game> Games { get; set; }
-
-        public ICollection<OpponentTeam> OpponentTeams { get; set; }
     }
 }

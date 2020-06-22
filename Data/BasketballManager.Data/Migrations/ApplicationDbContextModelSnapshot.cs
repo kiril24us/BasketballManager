@@ -146,58 +146,10 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MyTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OpponentTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Result")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MyTeamId");
-
-                    b.HasIndex("OpponentTeamId");
-
-                    b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("BasketballManager.Data.Models.GameStatistic", b =>
-                {
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StatisticId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PlayerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GameId", "StatisticId");
-
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("StatisticId");
-
-                    b.ToTable("GameStatistics");
-                });
-
-            modelBuilder.Entity("BasketballManager.Data.Models.MyTeam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Coach")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -209,42 +161,22 @@ namespace BasketballManager.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MyPoints")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Owner")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("OpponentPoints")
+                        .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TeamId");
 
-                    b.ToTable("MyTeams");
-                });
-
-            modelBuilder.Entity("BasketballManager.Data.Models.OpponentTeam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("MyTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MyTeamId");
-
-                    b.ToTable("OpponentTeams");
+                    b.ToTable("Games");
                 });
 
             modelBuilder.Entity("BasketballManager.Data.Models.Player", b =>
@@ -275,9 +207,6 @@ namespace BasketballManager.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MyTeamId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -287,11 +216,14 @@ namespace BasketballManager.Data.Migrations
                     b.Property<int>("PositionType")
                         .HasColumnType("int");
 
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("MyTeamId");
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Players");
                 });
@@ -335,35 +267,94 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Assists")
+                    b.Property<double>("Assists")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("DefensiveRebounds")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Fouls")
+                        .HasColumnType("float");
+
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DefensiveRebounds")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("Fouls")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("OffenciveRebounds")
-                        .HasColumnType("int");
+                    b.Property<double>("OffensiveRebounds")
+                        .HasColumnType("float");
 
-                    b.Property<int>("PlayedMinutes")
-                        .HasColumnType("int");
+                    b.Property<double>("PlayedMinutes")
+                        .HasColumnType("float");
 
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ThreePointsAttempt")
-                        .HasColumnType("int");
+                    b.Property<double>("ThreePointsAttempt")
+                        .HasColumnType("float");
 
                     b.Property<int>("ThreePointsMade")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("IsDeleted");
+
                     b.HasIndex("PlayerId");
 
                     b.ToTable("Statistics");
+                });
+
+            modelBuilder.Entity("BasketballManager.Data.Models.Team", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Coach")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -472,70 +463,42 @@ namespace BasketballManager.Data.Migrations
 
             modelBuilder.Entity("BasketballManager.Data.Models.Game", b =>
                 {
-                    b.HasOne("BasketballManager.Data.Models.MyTeam", "MyTeam")
+                    b.HasOne("BasketballManager.Data.Models.Team", "Team")
                         .WithMany("Games")
-                        .HasForeignKey("MyTeamId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BasketballManager.Data.Models.OpponentTeam", "OpponentTeam")
-                        .WithMany()
-                        .HasForeignKey("OpponentTeamId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BasketballManager.Data.Models.GameStatistic", b =>
-                {
-                    b.HasOne("BasketballManager.Data.Models.Game", "Game")
-                        .WithMany("GameStatistics")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BasketballManager.Data.Models.Player", null)
-                        .WithMany("PlayerStatistics")
-                        .HasForeignKey("PlayerId");
-
-                    b.HasOne("BasketballManager.Data.Models.Statistic", "Statistic")
-                        .WithMany("Games")
-                        .HasForeignKey("StatisticId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BasketballManager.Data.Models.MyTeam", b =>
-                {
-                    b.HasOne("BasketballManager.Data.Models.ApplicationUser", "User")
-                        .WithMany("MyTeams")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("BasketballManager.Data.Models.OpponentTeam", b =>
-                {
-                    b.HasOne("BasketballManager.Data.Models.MyTeam", "MyTeam")
-                        .WithMany("OpponentTeams")
-                        .HasForeignKey("MyTeamId")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("BasketballManager.Data.Models.Player", b =>
                 {
-                    b.HasOne("BasketballManager.Data.Models.MyTeam", "MyTeam")
+                    b.HasOne("BasketballManager.Data.Models.Team", "Team")
                         .WithMany("Players")
-                        .HasForeignKey("MyTeamId")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("BasketballManager.Data.Models.Statistic", b =>
                 {
+                    b.HasOne("BasketballManager.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("BasketballManager.Data.Models.Player", "Player")
                         .WithMany()
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BasketballManager.Data.Models.Team", b =>
+                {
+                    b.HasOne("BasketballManager.Data.Models.ApplicationUser", "User")
+                        .WithMany("Teams")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

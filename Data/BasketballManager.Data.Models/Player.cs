@@ -6,11 +6,6 @@
 
     public class Player : BaseDeletableModel<int>
     {
-        public Player()
-        {
-            this.PlayerStatistics = new HashSet<GameStatistic>();
-        }
-
         public string Name { get; set; }
 
         public int Age { get; set; }
@@ -21,12 +16,10 @@
 
         public int Number { get; set; }
 
-        public int MyTeamId { get; set; }
-
-        public virtual Team MyTeam { get; set; }
-
         public PositionType PositionType { get; set; }
 
-        public ICollection<GameStatistic> PlayerStatistics { get; set; }
+        public int TeamId { get; set; }
+
+        public virtual Team Team { get; set; }
     }
 }

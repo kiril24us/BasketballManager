@@ -28,13 +28,9 @@
 
         public DbSet<Game> Games { get; set; }
 
-        public DbSet<OpponentTeam> OpponentTeams { get; set; }
-
         public DbSet<Player> Players { get; set; }
 
-        public DbSet<Team> MyTeams { get; set; }
-
-        public DbSet<GameStatistic> GameStatistics { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         public DbSet<Statistic> Statistics { get; set; }
 
@@ -60,30 +56,6 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             // Needed for Identity models configuration
-            builder.Entity<GameStatistic>(entity =>
-            {
-                entity
-                    .HasKey(gs => new { gs.GameId, gs.StatisticId });
-
-                entity
-                    .HasOne(gs => gs.Game)
-                    .WithMany(g => g.GameStatistics)
-                    .HasForeignKey(gs => gs.GameId);
-
-                entity
-                    .HasOne(gs => gs.Statistic)
-                    .WithMany(s => s.Games)
-                    .HasForeignKey(g => g.StatisticId);
-            });
-
-            builder.Entity<Team>(entity =>
-            {
-                entity
-                    .HasOne(d => d.User)
-                    .WithMany(p => p.MyTeams)
-                    .HasForeignKey(d => d.UserId);
-            });
-
             base.OnModelCreating(builder);
 
             this.ConfigureUserIdentityRelations(builder);

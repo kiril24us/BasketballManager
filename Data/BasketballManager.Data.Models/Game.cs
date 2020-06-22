@@ -3,27 +3,18 @@
     using System;
     using System.Collections.Generic;
 
-    public class Game
+    using BasketballManager.Data.Common.Models;
+
+    public class Game : BaseDeletableModel<int>
     {
-        public Game()
-        {
-            this.GameStatistics = new HashSet<GameStatistic>();
-        }
+        public int MyPoints { get; set; }
 
-        public int Id { get; set; }
-
-        public int MyTeamId { get; set; }
-
-        public Team MyTeam { get; set; }
-
-        public int OpponentTeamId { get; set; }
-
-        public OpponentTeam OpponentTeam { get; set; }
-
-        public string Result { get; set; }
+        public int OpponentPoints { get; set; }
 
         public DateTime Date { get; set; }
 
-        public ICollection<GameStatistic> GameStatistics { get; set; }
+        public int TeamId { get; set; }
+
+        public virtual Team Team { get; set; }
     }
 }

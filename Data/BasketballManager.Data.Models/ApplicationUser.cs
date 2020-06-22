@@ -16,7 +16,7 @@ namespace BasketballManager.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
-            this.MyTeams = new HashSet<Team>();
+            this.Teams = new HashSet<Team>();
         }
 
         // Audit info
@@ -35,6 +35,6 @@ namespace BasketballManager.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-        public virtual ICollection<Team> MyTeams { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
     }
 }

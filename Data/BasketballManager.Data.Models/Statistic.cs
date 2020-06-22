@@ -2,33 +2,30 @@
 {
     using System.Collections.Generic;
 
-    public class Statistic
-    {
-        public Statistic()
-        {
-            this.Games = new HashSet<GameStatistic>();
-        }
+    using BasketballManager.Data.Common.Models;
 
-        public int Id { get; set; }
+    public class Statistic : BaseDeletableModel<int>
+    {
+        public double OffensiveRebounds { get; set; }
+
+        public double DefensiveRebounds { get; set; }
+
+        public double Assists { get; set; }
+
+        public double Fouls { get; set; }
+
+        public double PlayedMinutes { get; set; }
+
+        public double ThreePointsAttempt { get; set; }
+
+        public int ThreePointsMade { get; set; }
 
         public int PlayerId { get; set; }
 
         public virtual Player Player { get; set; }
 
-        public int OffensiveRebounds { get; set; }
+        public int GameId { get; set; }
 
-        public int DefensiveRebounds { get; set; }
-
-        public int Assists { get; set; }
-
-        public int Fouls { get; set; }
-
-        public int PlayedMinutes { get; set; }
-
-        public int ThreePointsAttempt { get; set; }
-
-        public int ThreePointsMade { get; set; }
-
-        public ICollection<GameStatistic> Games { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

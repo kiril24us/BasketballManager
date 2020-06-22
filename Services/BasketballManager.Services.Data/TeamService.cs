@@ -10,12 +10,12 @@
 
     public class TeamService : ITeamService
     {
-        private readonly IDeletableEntityRepository<Team> myTeamRepository;
+        private readonly IDeletableEntityRepository<Team> teamRepository;
 
         public TeamService(
-            IDeletableEntityRepository<Team> myTeamRepository)
+            IDeletableEntityRepository<Team> teamRepository)
         {
-            this.myTeamRepository = myTeamRepository;
+            this.teamRepository = teamRepository;
         }
 
         public async Task<int> CreateMyTeam(string name, string coach, string owner, string userId)
@@ -28,14 +28,14 @@
                 UserId = userId,
             };
 
-            await this.myTeamRepository.AddAsync(team);
-            await this.myTeamRepository.SaveChangesAsync();
+            await this.teamRepository.AddAsync(team);
+            await this.teamRepository.SaveChangesAsync();
             return team.Id;
         }
 
         public IEnumerable<T> GetAllTeamsById<T>(string userId)
         {
-            var teams = this.myTeamRepository.All().Where(x => x.UserId == userId)
+            var teams = this.teamRepository.All().Where(x => x.UserId == userId)
                                                    .OrderBy(x => x.CreatedOn);
 
             return teams.To<T>().ToList();

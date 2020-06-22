@@ -9,6 +9,5 @@
         public int MyTeamId { get; set; }
 
         public virtual Team MyTeam { get; set; }
-        
     }
 }

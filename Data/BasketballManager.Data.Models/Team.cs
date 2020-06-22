@@ -1,7 +1,7 @@
 ﻿namespace BasketballManager.Data.Models
 {
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
+
     using BasketballManager.Data.Common.Models;
 
     public class Team : BaseDeletableModel<int>
@@ -18,7 +18,7 @@
         public string Owner { get; set; }
 
         public string Coach { get; set; }
-        
+
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }

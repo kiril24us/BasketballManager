@@ -39,7 +39,7 @@
             }
 
             await this.playersService.Register(input.Name, input.Age, input.Height, input.Kilos, input.Number, input.PositionType, id);
-            return this.Redirect("/MyTeam/Details");
+            return this.Redirect("/Team/Details");
         }
 
         public IActionResult All(int id)

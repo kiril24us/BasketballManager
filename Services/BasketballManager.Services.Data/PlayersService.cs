@@ -30,8 +30,9 @@
 
         public T PlayersInfo<T>(int playerId)
         {
-            var player = this.playersRepository.All().Where(x => x.Id == playerId);
-            return player.To<T>().FirstOrDefault();
+            var player = this.playersRepository.All().Where(x => x.Id == playerId)
+                                                     .To<T>().FirstOrDefault();
+            return player;
         }
 
         public async Task Register(string name, int age, double height, double kilos, int number, string positionType, int teamId)

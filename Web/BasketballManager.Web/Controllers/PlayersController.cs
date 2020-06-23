@@ -52,10 +52,8 @@
 
         public IActionResult Info(int id)
         {
-            var viewModel = new DetailsPlayer();
-            var player = this.playersService.PlayersInfo<DetailsPlayer>(id);
-            viewModel = player;
-            return this.View(viewModel);
+            var playerViewModel = this.playersService.PlayersInfo<DetailsPlayer>(id);
+            return this.View(playerViewModel);
         }
 
         public async Task<IActionResult> Remove(int id)

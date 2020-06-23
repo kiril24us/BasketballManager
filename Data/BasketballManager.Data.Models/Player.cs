@@ -1,6 +1,7 @@
 ﻿namespace BasketballManager.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using BasketballManager.Data.Common.Models;
 
@@ -18,6 +19,7 @@
 
         public PositionType PositionType { get; set; }
 
+        [Required]
         public int TeamId { get; set; }
 
         public virtual Team Team { get; set; }

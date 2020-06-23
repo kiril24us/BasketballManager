@@ -17,16 +17,13 @@
     public class TeamController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly ITeamService teamService;
 
         public TeamController(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
             ITeamService teamService)
         {
             this.userManager = userManager;
-            this.signInManager = signInManager;
             this.teamService = teamService;
         }
 

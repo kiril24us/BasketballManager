@@ -1,10 +1,11 @@
 ﻿namespace BasketballManager.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using BasketballManager.Data.Common.Models;
 
-    public class Statistic : BaseDeletableModel<int>
+    public class Statistic : BaseModel<int>
     {
         public int OffensiveRebounds { get; set; }
 
@@ -20,10 +21,12 @@
 
         public int ThreePointsMade { get; set; }
 
+        [Required]
         public int PlayerId { get; set; }
 
         public virtual Player Player { get; set; }
 
+        [Required]
         public int GameId { get; set; }
 
         public virtual Game Game { get; set; }

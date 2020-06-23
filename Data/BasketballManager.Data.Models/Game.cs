@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using BasketballManager.Data.Common.Models;
 
@@ -13,8 +14,10 @@
 
         public DateTime Date { get; set; }
 
+        [Required]
         public int TeamId { get; set; }
 
+        [Required]
         public int OpponentId { get; set; }
 
         public virtual Team Team { get; set; }

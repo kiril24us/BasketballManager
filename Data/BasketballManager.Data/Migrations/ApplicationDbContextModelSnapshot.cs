@@ -279,17 +279,11 @@ namespace BasketballManager.Data.Migrations
                     b.Property<int>("DefensiveRebounds")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("Fouls")
                         .HasColumnType("int");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -312,8 +306,6 @@ namespace BasketballManager.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
-
-                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("PlayerId");
 

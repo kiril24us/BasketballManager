@@ -9,13 +9,6 @@
 
     public class HomeController : BaseController
     {
-        private readonly ApplicationDbContext db;
-
-        public HomeController(ApplicationDbContext db)
-        {
-            this.db = db;
-        }
-
         public IActionResult Index()
         {
             return this.View();

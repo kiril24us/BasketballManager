@@ -211,6 +211,7 @@ namespace BasketballManager.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Number")
@@ -218,6 +219,10 @@ namespace BasketballManager.Data.Migrations
 
                     b.Property<int>("PositionType")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TeamId")
                         .HasColumnType("int");

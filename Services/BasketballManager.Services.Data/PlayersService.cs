@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Text;
@@ -35,7 +36,7 @@
             return player;
         }
 
-        public async Task Register(string name, int age, double height, double kilos, int number, string positionType, int teamId)
+        public async Task Register(string name, int age, double height, double kilos, int number, string positionType, int teamId, string uniqueFileName)
         {
             var positionAsEnum = Enum.Parse<PositionType>(positionType);
 
@@ -48,6 +49,7 @@
                 Number = number,
                 PositionType = positionAsEnum,
                 TeamId = teamId,
+                ProfilePicture = uniqueFileName,
             };
 
             await this.playersRepository.AddAsync(player);

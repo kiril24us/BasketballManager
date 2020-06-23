@@ -8,6 +8,7 @@
     using AutoMapper;
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Mapping;
+    using Microsoft.AspNetCore.Http;
 
     public class AddPlayerViewModel
     {
@@ -32,5 +33,9 @@
 
         [Required]
         public string PositionType { get; set; }
+
+        [Required]
+        [Display(Name = "Profile Picture")]
+        public IFormFile ProfileImage { get; set; }
     }
 }

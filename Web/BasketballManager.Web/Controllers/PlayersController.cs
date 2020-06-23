@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
 
     using BasketballManager.Data;
@@ -12,15 +14,19 @@
     using BasketballManager.Services.Mapping;
     using BasketballManager.Web.ViewModels.Players;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public class PlayersController : Controller
     {
         private readonly IPlayersService playersService;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public PlayersController(IPlayersService playersService)
+        public PlayersController(IPlayersService playersService, IWebHostEnvironment hostEnvironment)
         {
             this.playersService = playersService;
+            this.hostEnvironment = hostEnvironment;
         }
 
         [Authorize]
@@ -38,8 +44,9 @@
                 return this.View(input);
             }
 
-            await this.playersService.Register(input.Name, input.Age, input.Height, input.Kilos, input.Number, input.PositionType, id);
-            return this.Redirect("/Team/Details");
+            string uniqueFileName = this.UploadFile(input.ProfileImage);
+            await this.playersService.Register(input.Name, input.Age, input.Height, input.Kilos, input.Number, input.PositionType, id, uniqueFileName);
+            return this.Redirect("/Teams/Details");
         }
 
         public IActionResult All(int id)
@@ -59,7 +66,23 @@
         public async Task<IActionResult> Remove(int id)
         {
             await this.playersService.Remove(id);
-            return this.Redirect("/Team/Details");
+            return this.Redirect("/Teams/Details");
+        }
+
+        private string UploadFile(IFormFile profileImage)
+        {
+            string uniqueFileName = null;
+
+            if (profileImage != null)
+            {
+                string uploadsFolder = Path.Combine(this.hostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + " " + profileImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                profileImage.CopyTo(fileStream);
+            }
+
+            return uniqueFileName;
         }
     }
 }

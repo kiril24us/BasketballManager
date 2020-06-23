@@ -4,6 +4,10 @@
     this.ViewData["Title"] = "Information about player ";
 }
 
+<img src="~/images/@Model.ProfilePicture"
+     class="rounded-circle"
+     height="80" width="80"
+     asp-append-version="true" />
 <h3>@Model.Name</h3>
 
 <ul style="list-style-type:circle">

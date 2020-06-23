@@ -18,5 +18,7 @@
         public int Number { get; set; }
 
         public string PositionType { get; set; }
+
+        public string ProfilePicture { get; set; }
     }
 }

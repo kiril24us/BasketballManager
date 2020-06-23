@@ -7,7 +7,7 @@
 
     public interface IPlayersService
     {
-        Task Register(string name, int age, double height, double kilos, int number, string positionType, int teamId);
+        Task Register(string name, int age, double height, double kilos, int number, string positionType, int teamId, string uniqueFileName);
 
         IEnumerable<T> AllPlayersByTeamId<T>(int teamId);
 

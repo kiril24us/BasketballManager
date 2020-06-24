@@ -1,4 +1,4 @@
-﻿namespace BasketballManager.Web.ViewModels.MyTeam
+﻿namespace BasketballManager.Web.ViewModels.Teams
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -13,5 +13,8 @@
 
         [Required]
         public string Coach { get; set; }
+
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Choose what type of Team is this!")]
+        public bool IsManaged { get; set; }
     }
 }

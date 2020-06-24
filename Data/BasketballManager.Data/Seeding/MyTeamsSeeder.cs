@@ -10,19 +10,6 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Teams.Any())
-            {
-                return;
-            }
-
-            var myteam = new Team
-                {
-                    Name = "Los Angeles Lakers",
-                    Coach = "Frank Vogel",
-                    Owner = "Jessie",
-                };
-
-            await dbContext.Teams.AddAsync(myteam);
         }
     }
 }

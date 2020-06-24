@@ -7,18 +7,25 @@
 
     public class Statistic : BaseModel<int>
     {
+        [Required]
         public int OffensiveRebounds { get; set; }
 
+        [Required]
         public int DefensiveRebounds { get; set; }
 
+        [Required]
         public int Assists { get; set; }
 
+        [Required]
         public int Fouls { get; set; }
 
+        [Required]
         public int PlayedMinutes { get; set; }
 
+        [Required]
         public int ThreePointsAttempt { get; set; }
 
+        [Required]
         public int ThreePointsMade { get; set; }
 
         [Required]

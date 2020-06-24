@@ -8,10 +8,13 @@
 
     public class Game : BaseDeletableModel<int>
     {
+        [Required]
         public int MyPoints { get; set; }
 
+        [Required]
         public int OpponentPoints { get; set; }
 
+        [Required]
         public DateTime Date { get; set; }
 
         [Required]

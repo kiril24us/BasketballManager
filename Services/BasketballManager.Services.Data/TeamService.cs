@@ -18,7 +18,7 @@
             this.teamRepository = teamRepository;
         }
 
-        public async Task<int> CreateMyTeam(string name, string coach, string owner, string userId)
+        public async Task<int> CreateMyTeam(string name, string coach, string owner, string userId, bool isManaged)
         {
             var team = new Team
             {
@@ -26,6 +26,7 @@
                 Coach = coach,
                 Owner = owner,
                 UserId = userId,
+                IsManaged = isManaged,
             };
 
             await this.teamRepository.AddAsync(team);

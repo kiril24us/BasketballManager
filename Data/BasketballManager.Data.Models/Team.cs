@@ -23,8 +23,7 @@
         [Required]
         public string Coach { get; set; }
 
-        [Display(Name = "Is this your Team or an Opponent?")]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is Active must be checked.")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Choose what type of Team is this!")]
         public bool IsManaged { get; set; }
 
         [Required]

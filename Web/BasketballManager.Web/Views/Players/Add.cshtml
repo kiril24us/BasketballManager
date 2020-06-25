@@ -4,6 +4,14 @@
     this.ViewData["Title"] = "Add Players";
 }
 
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
     <form enctype="multipart/form-data" asp-controller="Players" asp-action="Add" method="post">
 
         <div class="form-row">
@@ -41,12 +49,11 @@
         <hr />
         <div class="form-row">
             <div class="col-md-6">
-                <label asp-for="ProfileImage" class="control-label"></label>
                 <div class="custom-file">
-                    <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <input asp-for="ProfileImage" type="file" class="custom-file-input" id="ProfileImage">
+                    <label class="custom-file-label" for="ProfileImage">Choose file</label>
                     <span asp-validation-for="ProfileImage" class="text-danger"></span>
-                </div>              
+                </div>
             </div>
         </div>
 
@@ -57,6 +64,17 @@
             </div>
         </div>
     </form>
+
+    <script>
+        $('#ProfileImage').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
+</body>
+</html>
 
 
 

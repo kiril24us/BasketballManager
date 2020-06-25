@@ -52,11 +52,10 @@
                 <div class="custom-file">
                     <input asp-for="ProfileImage" type="file" class="custom-file-input" id="ProfileImage">
                     <label class="custom-file-label" for="ProfileImage">Choose file</label>
-                    <span asp-validation-for="ProfileImage" class="text-danger"></span>
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>                 
                 </div>
             </div>
         </div>
-
         <hr />
         <div class="text-center">
             <div class="text-center">
@@ -64,7 +63,7 @@
             </div>
         </div>
     </form>
-
+    
     <script>
         $('#ProfileImage').on('change', function () {
             //get the file name

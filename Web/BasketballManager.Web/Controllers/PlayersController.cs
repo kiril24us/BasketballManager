@@ -44,6 +44,13 @@
                 return this.View(input);
             }
 
+            string fileExtn = Path.GetExtension(input.ProfileImage.FileName);
+            if (fileExtn != ".jpg")
+            {
+                await this.Response.WriteAsync("Select jpg format for the picture!");
+                return this.View(input);
+            }
+
             string uniqueFileName = this.UploadFile(input.ProfileImage);
             await this.playersService.Register(input.Name, input.Age, input.Height, input.Kilos, input.Number, input.PositionType, id, uniqueFileName);
             return this.Redirect("/Teams/Details");

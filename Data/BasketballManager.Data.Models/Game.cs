@@ -9,9 +9,11 @@
     public class Game : BaseDeletableModel<int>
     {
         [Required]
+        [Range(0, 1000)]
         public int MyPoints { get; set; }
 
         [Required]
+        [Range(0, 1000)]
         public int OpponentPoints { get; set; }
 
         [Required]

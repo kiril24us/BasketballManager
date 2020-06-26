@@ -1,0 +1,70 @@
+﻿@model BasketballManager.Web.ViewModels.Games.RegisterGameViewModel
+@{
+    this.ViewData["Title"] = "Register Game";
+    List<SelectListItem> MyTeams = new List<SelectListItem>();
+    List<SelectListItem> Opponents = new List<SelectListItem>();
+    foreach (var team in Model.Teams)
+    {
+        MyTeams.Add(new SelectListItem() { Text = team.Name, Value = team.Id.ToString() });
+    }
+    foreach (var team in Model.Opponents)
+    {
+        Opponents.Add(new SelectListItem() { Text = team.Name, Value = team.Id.ToString() });
+    }
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+</head>
+
+<body>
+    <form asp-controller="Games" asp-action="RegisterGame" method="post">
+
+        <div class="form-row">
+            <div style="float:left;">
+                <label>Choose Your Team!</label>
+                <select asp-for="MyTeamId" asp-items="MyTeams" style="width: 300px;"></select>
+            </div>
+
+            <div style="float:left;">
+                <label>Choose An Opponent!</label>
+                <select asp-for="OpponentId" asp-items="Opponents" style="width: 300px;"></select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <label>My Team Points</label>
+                <input asp-for="MyPoints" class="form-control">
+                <span asp-validation-for="MyPoints" class="text-danger"></span>
+            </div>
+
+            <div class="col">
+                <label>Opponent Points</label>
+                <input asp-for="OpponentPoints" class="form-control">
+                <span asp-validation-for="OpponentPoints" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="example-date-input">Date Of The Game</label>
+                <input asp-for="Date" class="form-control" type="date" id="example-date-input" value=@Model.DateNow>
+            </div>
+        </div>
+
+        <hr />
+        <div class="text-center">
+            <div class="text-center">
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </div>
+        </div>  
+    </form>    
+</body>
+</html>
+
+

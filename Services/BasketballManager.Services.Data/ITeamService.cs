@@ -7,6 +7,8 @@
     {
          Task<int> CreateMyTeam(string name, string coach, string owner, string userId, bool isManaged);
 
-         IEnumerable<T> GetAllTeamsById<T>(string userId);
+         IEnumerable<T> GetMyTeamsById<T>(string userId);
+
+         IEnumerable<T> GetOpponentsById<T>(string userId);
     }
 }

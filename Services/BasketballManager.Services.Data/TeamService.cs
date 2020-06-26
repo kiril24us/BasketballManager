@@ -34,10 +34,20 @@
             return team.Id;
         }
 
-        public IEnumerable<T> GetAllTeamsById<T>(string userId)
+        public IEnumerable<T> GetMyTeamsById<T>(string userId)
         {
             var teams = this.teamRepository.All().Where(x => x.UserId == userId)
-                                                   .OrderBy(x => x.CreatedOn);
+                                                 .Where(x => x.IsManaged == true)
+                                                 .OrderBy(x => x.CreatedOn);
+
+            return teams.To<T>().ToList();
+        }
+
+        public IEnumerable<T> GetOpponentsById<T>(string userId)
+        {
+            var teams = this.teamRepository.All().Where(x => x.UserId == userId)
+                                                 .Where(x => x.IsManaged == false)
+                                                 .OrderBy(x => x.CreatedOn);
 
             return teams.To<T>().ToList();
         }

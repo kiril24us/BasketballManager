@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BasketballManager.Data.Common\BasketballManager.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\BasketballManager.Data.Models\BasketballManager.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\BasketballManager.Web.ViewModels\BasketballManager.Web.ViewModels.csproj" />
     <ProjectReference Include="..\BasketballManager.Services.Mapping\BasketballManager.Services.Mapping.csproj" />
   </ItemGroup>
 

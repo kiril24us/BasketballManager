@@ -72,6 +72,7 @@
 
         public async Task<IActionResult> Remove(int id)
         {
+
             await this.playersService.Remove(id);
             return this.Redirect("/Teams/Details");
         }

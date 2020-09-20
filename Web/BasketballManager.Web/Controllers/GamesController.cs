@@ -6,6 +6,7 @@
     using System.Reflection.Metadata.Ecma335;
     using System.Threading.Tasks;
 
+    using BasketballManager.Data;
     using BasketballManager.Data.Models;
     using BasketballManager.Services.Data;
     using BasketballManager.Web.ViewModels.Games;
@@ -55,14 +56,34 @@
             }
 
             await this.gamesService.RegisterGame(input.MyTeamId, input.OpponentId, input.MyPoints, input.OpponentPoints, input.Date);
+            this.TempData["InfoMessage"] = "Game was created!";
             return this.Redirect("/");
         }
 
-        public IActionResult GamesDetails(int id)
+        public IActionResult GamesDetailsByTeamId(int id)
+        {
+                var viewModel = new DetailsAllGames();
+                var games = this.gamesService.DetailsGames<DetailsGame>(id);
+                viewModel.Games = games;
+                return this.View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult GamesDetailsForAllTeams()
         {
             var viewModel = new DetailsAllGames();
-            var games = this.gamesService.DetailsGames<DetailsGame>(id);
+            var userId = this.userManager.GetUserId(this.User);
+            var games = this.gamesService.DetailsAllGames<DetailsGame>(userId);
             viewModel.Games = games;
+            return this.View(viewModel);
+        }
+
+        public IActionResult Proba()
+        {
+            var viewModel = new Proba();
+            var userId = this.userManager.GetUserId(this.User);
+            var games = this.gamesService.Proba<Probi>(userId);
+            viewModel.Probis = games;
             return this.View(viewModel);
         }
     }

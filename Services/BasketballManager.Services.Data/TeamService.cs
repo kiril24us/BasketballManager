@@ -1,5 +1,6 @@
 ﻿namespace BasketballManager.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -18,7 +19,7 @@
             this.teamRepository = teamRepository;
         }
 
-        public async Task<int> CreateMyTeam(string name, string coach, string owner, string userId, bool isManaged)
+        public async Task<int> CreateMyTeam(string name, string coach, string owner, string userId, int isManaged)
         {
             var team = new Team
             {
@@ -26,7 +27,7 @@
                 Coach = coach,
                 Owner = owner,
                 UserId = userId,
-                IsManaged = isManaged,
+                IsManaged = Convert.ToBoolean(isManaged),
             };
 
             await this.teamRepository.AddAsync(team);

@@ -5,7 +5,7 @@
 
     public interface ITeamService
     {
-         Task<int> CreateMyTeam(string name, string coach, string owner, string userId, bool isManaged);
+         Task<int> CreateMyTeam(string name, string coach, string owner, string userId, int isManaged);
 
          IEnumerable<T> GetMyTeamsById<T>(string userId);
 

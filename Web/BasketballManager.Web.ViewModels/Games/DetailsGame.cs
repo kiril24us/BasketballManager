@@ -13,7 +13,13 @@
         public int MyPoints { get; set; }
 
         public int OpponentPoints { get; set; }
-        
+
+        public int OpponentId { get; set; }
+
+        public string TeamName { get; set; }
+
+        public string OpponentName { get; set; }
+
         public DateTime Date { get; set; }
     }
 }

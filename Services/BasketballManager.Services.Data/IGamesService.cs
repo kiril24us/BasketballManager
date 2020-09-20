@@ -10,5 +10,9 @@
         Task RegisterGame(int teamId, int opponentId, int myPoints, int opponentPoints, DateTime date);
 
         IEnumerable<T> DetailsGames<T>(int id);
+
+        IEnumerable<T> Proba<T>(string id);
+
+        IEnumerable<T> DetailsAllGames<T>(string id);
     }
 }

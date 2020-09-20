@@ -177,6 +177,8 @@ namespace BasketballManager.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
+                    b.HasIndex("OpponentId");
+
                     b.HasIndex("TeamId");
 
                     b.ToTable("Games");
@@ -470,8 +472,14 @@ namespace BasketballManager.Data.Migrations
 
             modelBuilder.Entity("BasketballManager.Data.Models.Game", b =>
                 {
-                    b.HasOne("BasketballManager.Data.Models.Team", "Team")
+                    b.HasOne("BasketballManager.Data.Models.Team", "Opponent")
                         .WithMany("Games")
+                        .HasForeignKey("OpponentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BasketballManager.Data.Models.Team", "Team")
+                        .WithMany()
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

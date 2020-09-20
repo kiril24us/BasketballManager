@@ -56,6 +56,13 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             // Needed for Identity models configuration
+            builder.Entity<Game>(entity =>
+            {
+                entity.HasOne(g => g.Opponent)
+                      .WithMany(o => o.Games)
+                      .HasForeignKey(g => g.OpponentId);
+            });
+
             base.OnModelCreating(builder);
 
             this.ConfigureUserIdentityRelations(builder);

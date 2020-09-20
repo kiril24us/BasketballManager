@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using BasketballManager.Data.Common.Models;
 
@@ -22,9 +23,11 @@
         [Required]
         public int TeamId { get; set; }
 
+        public virtual Team Team { get; set; }
+
         [Required]
         public int OpponentId { get; set; }
 
-        public virtual Team Team { get; set; }
+        public virtual Team Opponent { get; set; }
     }
 }
